@@ -459,7 +459,7 @@ function handleFileSelect(evt) {
             (f.lastModifiedDate ?
              f.lastModifiedDate.toLocaleDateString() : 'n/a') +
             '</li></ul>';
-        if (f.type == 'text/csv') {
+        if (f.type == 'text/csv' || f.type == 'application/vnd.ms-excel') {
             d3.select('#signal_input_table').classed('hide', false);
         }
         d3.select('button').classed('hide', false);
@@ -481,7 +481,7 @@ function trigger_process(f) {
             let b_ids = string_to_int_array(document.getElementById('b_ids_input').value);
             let k_ids = string_to_int_array(document.getElementById('k_ids_input').value);
             var data;
-            if (f.type == 'text/csv') {
+            if (f.type == 'text/csv' || f.type == 'application/vnd.ms-excel') {
                 let csv_obj = d3.csvParse(e.target.result);
                 data = split_b_k(csv_obj, b_ids, k_ids, b_name, k_name, address_id);
             } else if (f.type == 'text/plain') {
